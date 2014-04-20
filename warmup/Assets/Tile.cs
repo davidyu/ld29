@@ -33,15 +33,35 @@ public class Tile : MonoBehaviour {
 		triangles.Add( 2 );
 		triangles.Add( 3 );
 
+		List<Vector2> uvs = new List<Vector2>();
+		uvs.Add( new Vector2( 0, 1 ) );
+		uvs.Add( new Vector2( 1, 1 ) );
+		uvs.Add( new Vector2( 1, 0 ) );
+		uvs.Add( new Vector2( 0, 0 ) );
+
 		mesh.Clear();
 		mesh.vertices = vertices.ToArray();
 		mesh.triangles = triangles.ToArray();
+		mesh.uv = uvs.ToArray();
 		mesh.Optimize();
 		mesh.RecalculateNormals();
-		GetComponent<MeshRenderer>().material.mainTexture = (Texture) Resources.Load( "tiles/walkable" );
 	}
 
 	// Update is called once per frame
 	void Update () {
+		// hot-swappable textures
+		Material material = GetComponent<MeshRenderer>().material;
+		Texture newTexture = material.mainTexture;
+		switch ( type ) {
+			case TileType.GROUND:
+				newTexture = (Texture) Resources.Load( "tiles/walkable" );
+				break;
+			case TileType.ABYSS:
+				newTexture = (Texture) Resources.Load( "tiles/abyss" );
+				break;
+		}
+		if ( newTexture != material.mainTexture ) {
+			material.mainTexture = newTexture;
+		}
 	}
 }
