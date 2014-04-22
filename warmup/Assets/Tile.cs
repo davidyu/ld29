@@ -7,9 +7,15 @@ public enum TileType {
 	ABYSS
 }
 
-public class Tile : MonoBehaviour {
+public enum TileState {
+	NORMAL,
+	HILIGHTED,
+}
 
+public class Tile : MonoBehaviour {
+	public static Vector2 size = new Vector2( 0.5f, 0.5f );
 	public TileType type = TileType.GROUND;
+	public TileState state = TileState.NORMAL;
 
 	// Use this for initialization
 	void Start () {
@@ -49,6 +55,15 @@ public class Tile : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		// hot-swappable materials
+		switch ( state ) {
+			case TileState.NORMAL:
+				GetComponent<MeshRenderer>().material = (Material) Resources.Load( "materials/unlit" );
+				break;
+			case TileState.HILIGHTED:
+				GetComponent<MeshRenderer>().material = (Material) Resources.Load( "materials/highlight" );
+				break;
+		}
 		// hot-swappable textures
 		Material material = GetComponent<MeshRenderer>().material;
 		Texture newTexture = material.mainTexture;
@@ -60,6 +75,7 @@ public class Tile : MonoBehaviour {
 				newTexture = (Texture) Resources.Load( "tiles/abyss" );
 				break;
 		}
+
 		if ( newTexture != material.mainTexture ) {
 			material.mainTexture = newTexture;
 		}

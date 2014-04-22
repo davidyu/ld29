@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class MapManager : MonoBehaviour {
 
-	public Vector2 TileSize = new Vector2( 0.5f, 0.5f );
-	public Vector2 GridSize = new Vector2( 10, 10 );
+	public static Vector2 margin = new Vector2( 1.0f, 1.0f ); // not very data-driven; code is brittle and depends on this special value of 1.0 for margins
+	public Vector2 GridSize = new Vector2( 5, 5 );
+	public List<GameObject> grid = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +17,8 @@ public class MapManager : MonoBehaviour {
 				GameObject go = (GameObject) Instantiate( Resources.Load( "Tile" ) );
 				int n = r.Next( 0, Enum.GetNames( typeof( TileType ) ).Length );
 				go.GetComponent<Tile>().type = (TileType) n;
-				go.transform.position = new Vector3( i * TileSize.x, j * TileSize.y, 0.0f );
+				go.transform.position = new Vector3( i * ( margin.x ), j * ( margin.y ), 1.0f );
+				grid.Add( go );
 			}
 		}
 	}
