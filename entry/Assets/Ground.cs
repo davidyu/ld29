@@ -24,7 +24,7 @@ public class Ground : MonoBehaviour {
 		for ( int i = 0; i < segments; i++ ) {
 			float a = i * angleStep;
 			vertices.Add( new Vector3( x + (float) Math.Cos( a ) * radius, y + (float) Math.Sin( a ) * radius, z ) );
-			print( vertices[i] );
+			// print( vertices[i] );
 		}
 
 		List<int> triangles = new List<int>();

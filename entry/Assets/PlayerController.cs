@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour {
 	public Vector2 moveSpeed = new Vector2( 0.4f, 0.4f );
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
