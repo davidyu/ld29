@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlanetaryGravity : MonoBehaviour {
 
@@ -20,6 +21,8 @@ public class PlanetaryGravity : MonoBehaviour {
 		rigidbody2D.AddForce( dir * gravity );
 
 		// change rotation transform manually (this way it's less shaky)
-		Vector2 rot = -dir.normalize();
+		Vector2 rot = -( dir.normalized );
+		double rad = Math.Atan2( -rot.y, rot.x );
+		print( MathHelper.ToDegrees( rad ) );
 	}
 }
