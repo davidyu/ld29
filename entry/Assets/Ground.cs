@@ -28,10 +28,11 @@ public class Ground : MonoBehaviour {
 		}
 
 		List<int> triangles = new List<int>();
-		for ( int i = 0; i < segments - 1; i++ ) {
+
+		for ( int i = 1; i < segments; i++ ) {
 			triangles.Add( 0 );
+			triangles.Add( i );
 			triangles.Add( i+1 );
-			triangles.Add( i+2 );
 		}
 
 		// last triangle
