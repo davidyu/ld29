@@ -17,11 +17,12 @@ public class Magnet : MonoBehaviour {
 	void Update () {
 		// only care about magnetic force between you and player
 		GameObject player = GameObject.FindWithTag( "Player" );
+		GameObject world = GameObject.FindWithTag( "World" );
 		var q1 = PlayerController.PoleToCharge( player.GetComponent<PlayerController>().pole );
 		var q2 = PoleToCharge( pole );
 		Vector3 diff = player.transform.position - transform.position;
 		Vector2 dir = new Vector2( diff.x, diff.y );
-		Vector2 force = dir.normalized * q1 * q2 * LevelSettings.coloubConstant / dir.sqrMagnitude;
+		Vector2 force = dir.normalized * q1 * q2 * world.GetComponent<LevelSettings>().coloubConstant / dir.sqrMagnitude;
 		rigidbody2D.AddForce( force );
 	}
 }
