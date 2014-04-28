@@ -12,7 +12,7 @@ public class Ground : MonoBehaviour {
 	void Start () {
 		// build circular mesh
 		Mesh mesh = GetComponent<MeshFilter>().mesh;
-		mesh.name = "Star Mesh";
+		mesh.name = "Circle Mesh";
 
 		float x = 0; // object space, not world space
 		float y = 0; // object space, not world space
