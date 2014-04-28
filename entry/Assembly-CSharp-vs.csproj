@@ -47,12 +47,14 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CameraController.cs" />
+     <Compile Include="Assets\DialogData.cs" />
      <Compile Include="Assets\Ground.cs" />
      <Compile Include="Assets\LevelSettings.cs" />
      <Compile Include="Assets\Magnet.cs" />
      <Compile Include="Assets\MathHelper.cs" />
      <Compile Include="Assets\PlanetaryGravity.cs" />
      <Compile Include="Assets\PlayerController.cs" />
+     <Compile Include="Assets\RoseDialogData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
