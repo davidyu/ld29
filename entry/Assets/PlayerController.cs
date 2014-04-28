@@ -22,6 +22,13 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if ( Input.GetButtonDown( "South" ) ) {
+			pole = PlayerPole.SOUTH;
+		}
+
+		if ( Input.GetButtonDown( "North" ) ) {
+			pole = PlayerPole.NORTH;
+		}
 	}
 
 	void FixedUpdate() {
@@ -35,8 +42,6 @@ public class PlayerController : MonoBehaviour {
 		Vector3 diff = transform.position - target.transform.position;
 		Vector2 left = (new Vector2( -diff.y, diff.x )).normalized;
 		Vector2 right = (new Vector2( diff.y, -diff.x )).normalized;
-
-		print( left );
 
 		if( h < 0 ) {
 			// get left vector relative to center
