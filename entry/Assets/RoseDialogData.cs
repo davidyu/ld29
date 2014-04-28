@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public enum RoseState {
 	REQUEST_HELP,
 	FLYING,
-	HELP_ACQUIRED
+	GRATEFUL
 }
 
 [Serializable]
