@@ -6,6 +6,7 @@ public enum PlayerPole { // hmmm...hacky
 	NORTH
 }
 
+[RequireComponent(typeof(PlanetaryGravity))]
 public class PlayerController : MonoBehaviour {
 
 	public PlayerPole pole;
@@ -25,12 +26,25 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate() {
 		float h = Input.GetAxis( "Horizontal" );
+		var target = GetComponent<PlanetaryGravity>().planet;
+		if ( target == null ) {
+			return;
+		}
+
+		// left and right tangent to surface of planet
+		Vector3 diff = transform.position - target.transform.position;
+		Vector2 left = (new Vector2( -diff.y, diff.x )).normalized;
+		Vector2 right = (new Vector2( diff.y, -diff.x )).normalized;
+
+		print( left );
+
 		if( h < 0 ) {
-			rigidbody2D.velocity = new Vector2( -moveSpeed.x, 0 );
+			// get left vector relative to center
+			rigidbody2D.velocity = left * moveSpeed.x;
 		}
 
 		if ( h > 0 ) {
-			rigidbody2D.velocity = new Vector2( moveSpeed.x, 0 );
+			rigidbody2D.velocity = right * moveSpeed.x;
 		}
 	}
 }
