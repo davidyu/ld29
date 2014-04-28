@@ -21,7 +21,7 @@ public class Magnet : MonoBehaviour {
 		var q2 = PoleToCharge( pole );
 		Vector3 diff = player.transform.position - transform.position;
 		Vector2 dir = new Vector2( diff.x, diff.y );
-		Vector2 force = dir * q1 * q2 * LevelSettings.coloubConstant / dir.magnitude;
+		Vector2 force = dir.normalized * q1 * q2 * LevelSettings.coloubConstant / dir.sqrMagnitude;
 		rigidbody2D.AddForce( force );
 	}
 }
