@@ -15,6 +15,7 @@ public class Magnet : MonoBehaviour {
 	}
 
 	void Update () {
+		// only care about magnetic force between you and player
 		GameObject player = GameObject.FindWithTag( "Player" );
 		var q1 = PlayerController.PoleToCharge( player.GetComponent<PlayerController>().pole );
 		var q2 = PoleToCharge( pole );
