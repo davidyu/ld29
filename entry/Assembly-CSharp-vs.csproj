@@ -48,6 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\CameraController.cs" />
      <Compile Include="Assets\Ground.cs" />
+     <Compile Include="Assets\LevelSettings.cs" />
+     <Compile Include="Assets\Magnet.cs" />
      <Compile Include="Assets\MathHelper.cs" />
      <Compile Include="Assets\PlanetaryGravity.cs" />
      <Compile Include="Assets\PlayerController.cs" />

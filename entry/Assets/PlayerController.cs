@@ -1,7 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum PlayerPole { // hmmm...hacky
+	SOUTH,
+	NORTH
+}
+
 public class PlayerController : MonoBehaviour {
+
+	public PlayerPole pole;
+
+	public static float PoleToCharge( PlayerPole p ) {
+		return p == PlayerPole.SOUTH ? 1f : -1f;
+	}
 
 	public Vector2 moveSpeed = new Vector2( 0.4f, 0.4f );
 	// Use this for initialization
