@@ -26,7 +26,7 @@ public class Magnet : MonoBehaviour {
 		rigidbody2D.AddForce( pf );
 
 		// apply bomber force
-		if ( bomber != gameObject && gameObject != player &&
+		if ( gameObject != bomber && gameObject != player &&
 				 bomber.GetComponent<BomberController>().magnetIsActive ) { // bomber does not affect itself or the player
 			Vector3 bomberToMe =  transform.position - bomber.transform.position;
 			Vector2 bf = GetForceByCoulombsLaw( PoleToCharge( bomber.GetComponent<Magnet>().pole ),

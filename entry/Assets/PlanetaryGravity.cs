@@ -23,6 +23,7 @@ public class PlanetaryGravity : MonoBehaviour {
 		// change rotation transform manually (this way it's less shaky)
 		Vector2 rot = -( dir.normalized );
 		double rad = Math.Atan2( -rot.y, rot.x );
-		// print( MathHelper.ToDegrees( rad ) );
+
+		transform.eulerAngles = new Vector3( 0, 0, (float) MathHelper.ToDegrees( rad ) );
 	}
 }
