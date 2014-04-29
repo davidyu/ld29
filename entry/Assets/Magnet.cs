@@ -17,12 +17,28 @@ public class Magnet : MonoBehaviour {
 	void Update () {
 		// only care about magnetic force between you and player
 		GameObject player = GameObject.FindWithTag( "Player" );
+		GameObject bomber = GameObject.FindWithTag( "Bomber" );
+
+		Vector3 playerToMe = player.transform.position - transform.position;
+		Vector2 pf = GetForceByCoulombsLaw( PlayerController.PoleToCharge( player.GetComponent<PlayerController>().pole ),
+																				PoleToCharge( pole ),
+																				new Vector2( playerToMe.x, playerToMe.y ) );
+		rigidbody2D.AddForce( pf );
+
+		// apply bomber force
+		if ( bomber != gameObject && gameObject != player &&
+				 bomber.GetComponent<BomberController>().magnetIsActive ) { // bomber does not affect itself or the player
+			Vector3 bomberToMe =  transform.position - bomber.transform.position;
+			Vector2 bf = GetForceByCoulombsLaw( PoleToCharge( bomber.GetComponent<Magnet>().pole ),
+																					PoleToCharge( pole ),
+																					new Vector2( bomberToMe.x, bomberToMe.y ) );
+
+			rigidbody2D.AddForce( bf * bomber.GetComponent<BomberController>().bomberMagnetMultiplier );
+		}
+	}
+
+	Vector2 GetForceByCoulombsLaw( float q1, float q2, Vector2 r ) {
 		GameObject world = GameObject.FindWithTag( "World" );
-		var q1 = PlayerController.PoleToCharge( player.GetComponent<PlayerController>().pole );
-		var q2 = PoleToCharge( pole );
-		Vector3 diff = player.transform.position - transform.position;
-		Vector2 dir = new Vector2( diff.x, diff.y );
-		Vector2 force = dir.normalized * q1 * q2 * world.GetComponent<LevelSettings>().coloubConstant / dir.sqrMagnitude;
-		rigidbody2D.AddForce( force );
+		return r.normalized * q1 * q2 * world.GetComponent<LevelSettings>().coloubConstant / r.sqrMagnitude;
 	}
 }

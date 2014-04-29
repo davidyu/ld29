@@ -8,6 +8,8 @@ public class BomberController : MonoBehaviour {
 	public float orbitRadius;
 	public float rotation; // in radians
 	public float drot; // rotation velocity in radians
+	public float bomberMagnetMultiplier = 5f; // bomber's magnet is 5x powerful than player's
+	public bool magnetIsActive = false;
 
 	// Use this for initialization
 	void Start () {
