@@ -30,6 +30,6 @@ public class PlanetaryGravity : MonoBehaviour {
 			print( MathHelper.ToDegrees( rad ) + 90 );
 
 		if ( rotate )
-			transform.eulerAngles = new Vector3( 0, 0, (float) MathHelper.ToDegrees( rad ) + 90 );
+			transform.eulerAngles = new Vector3( 0, 0, 90 - (float) MathHelper.ToDegrees( rad ) );
 	}
 }
