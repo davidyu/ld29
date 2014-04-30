@@ -26,7 +26,7 @@ public class PlanetaryGravity : MonoBehaviour {
 		// check cases;
 		GameObject player = GameObject.FindWithTag( "Player" );
 		if ( gameObject == player ) {
-			print( rot );
+			// print( rot );
 		}
 
 		transform.eulerAngles = new Vector3( 0, 0, rot );

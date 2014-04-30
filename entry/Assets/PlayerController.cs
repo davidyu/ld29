@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public enum PlayerPole { // hmmm...hacky
 	SOUTH,
@@ -50,6 +51,10 @@ public class PlayerController : MonoBehaviour {
 
 		if ( h > 0 ) {
 			rigidbody2D.velocity = right * moveSpeed.x;
+		}
+
+		if ( Math.Abs( h ) < 0.05 ) {
+			rigidbody2D.velocity = new Vector2( 0, 0 );
 		}
 	}
 }
