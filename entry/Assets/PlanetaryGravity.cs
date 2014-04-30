@@ -6,6 +6,7 @@ public class PlanetaryGravity : MonoBehaviour {
 
 	public GameObject planet;
 	public float gravity = 1f;
+	public bool rotate = true;
 
 	// Use this for initialization
 	void Start () {
@@ -21,14 +22,14 @@ public class PlanetaryGravity : MonoBehaviour {
 		rigidbody2D.AddForce( dir * gravity );
 
 		// change rotation transform manually (this way it's less shaky)
-		float rot = Vector2.Angle( planet.transform.position, transform.position );
+		Vector2 rot = -( dir.normalized );
+		double rad = Math.Atan2( -rot.y, rot.x );
 
-		// check cases;
 		GameObject player = GameObject.FindWithTag( "Player" );
-		if ( gameObject == player ) {
-			// print( rot );
-		}
+		if ( gameObject == player )
+			print( MathHelper.ToDegrees( rad ) + 90 );
 
-		transform.eulerAngles = new Vector3( 0, 0, rot );
+		if ( rotate )
+			transform.eulerAngles = new Vector3( 0, 0, (float) MathHelper.ToDegrees( rad ) + 90 );
 	}
 }
