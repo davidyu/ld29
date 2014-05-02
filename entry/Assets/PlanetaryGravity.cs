@@ -26,8 +26,6 @@ public class PlanetaryGravity : MonoBehaviour {
 		double rad = Math.Atan2( -rot.y, rot.x );
 
 		GameObject player = GameObject.FindWithTag( "Player" );
-		if ( gameObject == player )
-			print( MathHelper.ToDegrees( rad ) + 90 );
 
 		if ( rotate )
 			transform.eulerAngles = new Vector3( 0, 0, 90 - (float) MathHelper.ToDegrees( rad ) );
